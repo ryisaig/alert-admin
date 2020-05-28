@@ -33,6 +33,10 @@ class ViewUserList extends React.Component {
             headerStyle: (colum, colIndex) => {
                 return { width: '100px'};
             }},
+            {dataField: "email", text: "Email", sort: true, 
+            headerStyle: (colum, colIndex) => {
+                return { width: '100px'};
+            }},
             {dataField: "userStatus", text: "Status", sort: true,  
                 headerStyle: (colum, colIndex) => {
                     return { width: '80px'};

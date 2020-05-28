@@ -57,6 +57,24 @@ class EditUser extends React.Component {
               })
               this.setState({fields: fields})
             }.bind(this)          },
+            {
+              id: "email",
+              name: "email",
+              label: "Email",
+              placeholder: "",
+              overrideStyle: {},
+              isRequired: false,
+              type: "text",
+              selectValueChange: function(value){
+                let fields = this.state.fields;
+                fields.forEach(function(field){
+                  if(field.id === "email"){
+                      field.value = value;
+                  }
+                })
+                this.setState({fields: fields})
+              }.bind(this)
+            },
         ]
       }
 
