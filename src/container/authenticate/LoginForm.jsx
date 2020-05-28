@@ -48,7 +48,9 @@ class Login extends React.Component {
                 sessionStorage.setItem("luna_user", res.data.username);
                 sessionStorage.setItem("luna_session", res.data.sessionId);
                 sessionStorage.setItem("luna_id", res.data.userId);
+
                 window.location.href = "./";
+       
             })
         }).catch( e => {
             swal("Error!", "Invalid Login", "error");

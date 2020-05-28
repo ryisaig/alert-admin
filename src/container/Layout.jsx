@@ -51,7 +51,8 @@ export default class Layout extends React.Component {
             swal("Success!", "You've been logged-out", "success").then(()=>{
                 sessionStorage.removeItem("luna_session");
                 sessionStorage.removeItem("luna_user");
-                window.location.href = "../login"
+
+                window.location.href = "../login";
             })
         }).catch( e => {
             swal("Error!", "Error occurred. Please try again", "error").then(()=>{

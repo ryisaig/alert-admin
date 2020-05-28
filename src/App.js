@@ -63,7 +63,15 @@ import EditNewEnrollment from './container/enrollment/EditNewEnrollment';
 import EditOldEnrollment from './container/enrollment/EditOldEnrollment';
 import ViewNewEnrollmentDetails from './container/enrollment/ViewNewEnrollmentDetails';
 import ViewOldEnrollmentDetails from './container/enrollment/ViewOldEnrollmentDetails';
+import axios from 'axios'
 
+
+axios.interceptors.request.use((config) => {
+  const token = sessionStorage.getItem("luna_session");
+  config.headers.Authorization =  token;
+
+  return config;
+});
 
 function App() {
   return (
