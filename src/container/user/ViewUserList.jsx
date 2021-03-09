@@ -19,7 +19,7 @@ class ViewUserList extends React.Component {
         isSearchable: true,
         isPrintable: true,
         isCreatable: true,
-        createUrl: "/user/create",
+        createUrl: "/users/create",
         columns: [
             {dataField: "no", text: "No", sort: true,  
                 headerStyle: (colum, colIndex) => {
@@ -29,6 +29,10 @@ class ViewUserList extends React.Component {
                 headerStyle: (colum, colIndex) => {
                     return { width: '80px'};
                 }},
+            {dataField: "name", text: "Name", sort: true, 
+            headerStyle: (colum, colIndex) => {
+                return { width: '80px'};
+            }},
             {dataField: "password", text: "Password", sort: true, 
             headerStyle: (colum, colIndex) => {
                 return { width: '100px'};
@@ -51,8 +55,8 @@ class ViewUserList extends React.Component {
                 },
                 formatter: (cell, row) => (
                     <>  
-                       <Button as={Link} variant="outline-info"  to={"/user/" + row['id']+ "/details"}><ImageSearch/></Button>&nbsp;
-                        <Button as={Link} variant="outline-info"  to={"/user/" + row['id']+ "/edit"}><Create/></Button>&nbsp;
+                       <Button as={Link} variant="outline-info"  to={"/users/" + row['id']+ "/details"}><ImageSearch/></Button>&nbsp;
+                        <Button as={Link} variant="outline-info"  to={"/users/" + row['id']+ "/edit"}><Create/></Button>&nbsp;
                         {row['userStatus'] == "ACTIVE" ?
                          <Button as={Link} variant="outline-warning" onClick={()=>this.modifyStatus(row['id'], row)}>Deactivate</Button> :
                          <Button as={Link} variant="outline-info" onClick={()=>this.modifyStatus(row['id'], row)}>Re-activate</Button>

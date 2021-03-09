@@ -7,7 +7,7 @@ export default function GenericRequest(){
         sessionValue: sessionStorage.getItem("luna_session"),
         username: sessionStorage.getItem("luna_user"), // TO DO Get from browser session
         clientIp: 'test', // TO DO Get from browser session
-        application: 'ADMIN_PORTAL'
+        application: 'GRADING_PORTAL'
     }
     return data;
 }

@@ -19,6 +19,7 @@ class EditSubject extends React.Component {
         submitUrl: BASE_SERVER_URL+"grade/"+this.resourceId,
         method: "PATCH",
         successMessage: "Grade has been updated",
+        disableReload: true,
         fields: [
           {
             id: "classCode",
@@ -103,7 +104,23 @@ class EditSubject extends React.Component {
             placeholder: "",
             overrideStyle: {},
             isRequired: true,
-            type: "text",
+            type: "select",
+            value: "",
+            options: [
+              {key: "1.00", value:"1.00"},
+              {key: "1.25", value:"1.25"},
+              {key: "1.50", value:"1.50"},
+              {key: "1.75", value:"1.75"},
+              {key: "2.00", value:"2.00"},
+              {key: "2.25", value:"2.25"},
+              {key: "2.50", value:"2.50"},
+              {key: "2.75", value:"2.75"},
+              {key: "3.00", value:"3.00"},
+              {key: "4.00", value:"4.00"},
+              {key: "INC", value:"INC"},
+              {key: "5.00", value:"5.00"},
+              {key: "DRP", value:"DRP"}
+            ],            
             editable: true,
             selectValueChange: function(value){
               let fields = this.state.fields;
@@ -159,7 +176,6 @@ class EditSubject extends React.Component {
     success(){
       const id = this.resourceId;
       this.getGrade(id);
-     
     }
 
     render(){

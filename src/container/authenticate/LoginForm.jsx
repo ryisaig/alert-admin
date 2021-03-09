@@ -38,7 +38,7 @@ class Login extends React.Component {
             } ,
             username: fields['username'],
             password: fields['password'],
-            application: 'ADMIN_PORTAL',
+            application: 'GRADING_PORTAL',
             clientIp: ''           
         }
         
@@ -48,6 +48,8 @@ class Login extends React.Component {
                 sessionStorage.setItem("luna_user", res.data.username);
                 sessionStorage.setItem("luna_session", res.data.sessionId);
                 sessionStorage.setItem("luna_id", res.data.userId);
+                sessionStorage.setItem("luna_name", res.data.name);
+                sessionStorage.setItem("email", res.data.email);
 
                 window.location.href = "./";
        
@@ -62,8 +64,9 @@ class Login extends React.Component {
         return(
             <>    
             <form onSubmit={(e) => this.login(e, this.state.fields)} class="bg-light" style={{width: '500px', margin: 'auto', padding: '50px', borderRadius: '20px', position: 'absolute', top: '50%', transform: 'translateY(-50%) translateX(-50%)', left: '50%', boxShadow: '2px 4px 10px rgba(0,0,0,.2)'}}>
-                    <center><img src={logo} alt="" style={{width: '50px'}}/>
-                    <span style={{marginLeft: '10px', fontSize: '20px'}}>Luna College Administrative Portal</span>
+                    <center>
+                        {/* <img src={logo} alt="" style={{width: '50px'}}/> */}
+                    <span style={{marginLeft: '10px', fontSize: '20px'}}>Grading Portal</span>
                     </center>
                 <div style={{marginTop: '30px'}}>
 

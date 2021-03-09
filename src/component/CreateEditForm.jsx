@@ -52,8 +52,15 @@ function CreateEditForm(props) {
         call(props.values.submitUrl, params)
         .then(res => {
             swal("Success!", props.values.successMessage, "success").then(()=>{
+                
                 successAction();
-                window.location.href = cancelUrl
+
+                if(!props.values.disableReload){
+                    window.location.href = cancelUrl
+                } else {
+                    window.location = "../";
+                }
+
             })
         }).catch( e => {
             swal("Error!", e.message, "error");
