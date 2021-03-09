@@ -37,6 +37,24 @@ class CreateUser extends React.Component {
             }.bind(this)
           },
           {
+            id: "name",
+            name: "name",
+            label: "Name",
+            placeholder: "",
+            overrideStyle: {},
+            isRequired: true,
+            type: "text",
+            selectValueChange: function(value){
+              let fields = this.state.fields;
+              fields.forEach(function(field){
+                if(field.id === "name"){
+                    field.value = value;
+                }
+              })
+              this.setState({fields: fields})
+            }.bind(this)
+          },
+          {
             id: "password",
             name: "password",
             label: "Password",

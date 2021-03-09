@@ -19,6 +19,7 @@ class EditSubject extends React.Component {
         submitUrl: BASE_SERVER_URL+"grade/"+this.resourceId,
         method: "PATCH",
         successMessage: "Grade has been updated",
+        disableReload: true,
         fields: [
           {
             id: "classCode",
@@ -159,7 +160,6 @@ class EditSubject extends React.Component {
     success(){
       const id = this.resourceId;
       this.getGrade(id);
-     
     }
 
     render(){

@@ -10,7 +10,6 @@ import {
     Link
   } from "react-router-dom";
 import swal from 'sweetalert';
-import StudentGrades from './StudentGrades';
 import TeacherGrades from './TeacherGrades';
 import { ImageSearch, Create, DeleteOutline } from '@material-ui/icons';
   
@@ -21,7 +20,8 @@ class ViewGradeList extends React.Component {
         isSearchable: true,
         isPrintable: true,
         isCreatable: true,
-        createUrl: "/Grade/create",
+        createUrl: "/grades/create",
+        disableReload: true,
         columns: [
             {dataField: "no", text: "No", sort: true,  
                 headerStyle: (colum, colIndex) => {
@@ -41,7 +41,7 @@ class ViewGradeList extends React.Component {
                 formatter: (cell, row) => (
                     <>  
                          {/* <Button as={Link} variant="outline-info"  to={"/grade/" + row['id']+ "/details"}><ImageSearch/></Button>&nbsp; */}
-                        <Button as={Link} variant="outline-info"  to={"/grade/" + row['id']+ "/edit"}><Create/></Button>&nbsp;
+                        <Button as={Link} variant="outline-info"  to={"/grades/" + row['id']+ "/edit"}><Create/></Button>&nbsp;
                         {/* <Button as={Link} variant="outline-danger" onClick={()=>this.delete(row['id'])}><DeleteOutline/></Button> */}
 
                     </>
@@ -148,6 +148,8 @@ class ViewGradeList extends React.Component {
         })
     }
 
+  
+
     componentWillMount(){
         this.getSchoolYears();
    
@@ -155,15 +157,8 @@ class ViewGradeList extends React.Component {
 
     render(){
         return(
-            <div>
-                <Tabs defaultActiveKey="teacher" transition={false} id="noanim-tab-example">
-                    <Tab eventKey="teacher" title="Teacher Perspective">
-                        <TeacherGrades  sideContent={this.props.children} />
-                    </Tab>
-                    <Tab eventKey="student" title="Student Perspective">
-                        <StudentGrades  sideContent={this.props.children} />
-                    </Tab>
-                </Tabs>
+            <div>          
+                <TeacherGrades  sideContent={this.props.children} />                 
             </div>
         )
     }

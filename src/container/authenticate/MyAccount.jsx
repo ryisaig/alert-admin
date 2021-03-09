@@ -18,7 +18,7 @@ class MyAccount extends React.Component {
         isSearchable: false,
         isPrintable: false,
         isCreatable: false,
-        createUrl: "/user/create",
+        createUrl: "/users/create",
         columns: [
             {dataField: "schoolId", text: "School ID", sort: true, 
                 headerStyle: (colum, colIndex) => {
