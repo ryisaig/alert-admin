@@ -133,7 +133,7 @@ export default class Layout extends React.Component {
                    <p style={{color: '#424242', fontSize: '12px'}}> {sessionStorage.getItem("luna_user") ? sessionStorage.getItem("luna_user").toUpperCase() : ""}</p>
                 </div>
                 <div>
-                <ListGroup.Item as={Link} style={linkStyle} to="../../../grades"><SignalCellularAlt/>&nbsp;&nbsp;&nbsp;&nbsp;My Students</ListGroup.Item>                        
+                <ListGroup.Item as={Link} style={linkStyle} to="../../../grades"><SignalCellularAlt/>&nbsp;&nbsp;&nbsp;&nbsp;Grades</ListGroup.Item>                        
                 <ListGroup.Item as={Link} style={linkStyle} to="#" onClick={this.signout}><ExitToApp/>&nbsp;&nbsp;&nbsp;&nbsp;Sign-out</ListGroup.Item>
                 </div>
             </div>
