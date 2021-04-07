@@ -73,7 +73,7 @@ class TeacherGrades extends React.Component {
                 this.filterUpdated(fields, "schoolYear")
             }.bind(this)
             },
-            {field: 'semester', label: "Semester", value: 1, options: [{key: 1, value: "First"},{key: 2, value: "Second"}],
+            {field: 'semester', label: "Semester", value: 1, options: [{key: 1, value: "First"},{key: 2, value: "Second"},{key: 3, value: "Summer"}],
             onChange: function(e){
 
                 let fields = this.state.filters;
@@ -83,8 +83,8 @@ class TeacherGrades extends React.Component {
                   }
                 }
                 )
-                this.filterUpdated(fields, "semester")
-            }.bind(this)},           
+                this.filterUpdated(fields, 'semester')
+            }.bind(this)},          
             {field: 'class', label: "Class", options: [], onChange: function(e){
 
                 let fields = this.state.filters;
@@ -201,7 +201,7 @@ class TeacherGrades extends React.Component {
             }
           })
           this.setState({filters: filters})
-          this.getTeachers();
+          this.getClasss();
         })
      }
 
@@ -225,8 +225,8 @@ class TeacherGrades extends React.Component {
             res.data.map(function(classObj){
                 classOptions.push({key: classObj.id, value: classObj.classCode});          
             });
-        
             let filters = this.state.filters;
+
             filters.forEach(function(filter){
                 if(filter.field == 'class'){
                     filter.value = classOptions[0] ? classOptions[0].key: null;

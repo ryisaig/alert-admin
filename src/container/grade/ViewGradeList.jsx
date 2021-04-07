@@ -97,20 +97,32 @@ class ViewGradeList extends React.Component {
         axios.get(BASE_SERVER_URL + 'schoolYearSemester',  { params: {...GenericRequest(), keyword: ""}})
         .then(res => {
           let syOptions = [];
+          let syMap = {};
+          let defaultSy = {};
+          let defaultSem = 0;
           res.data.map(function(sy){
             let schoolYearStr = sy['schoolYearStart'] + "-" + sy['schoolYearEnd'];
-              syOptions.push({key: schoolYearStr, value: schoolYearStr});          
+            if(sy['current']){
+                defaultSy = {key: schoolYearStr, value: schoolYearStr};
+                defaultSem = "" + sy['semester'];
+            }
+            if(!syMap[schoolYearStr]){
+                syOptions.push({key: schoolYearStr, value: schoolYearStr});     
+                syMap[schoolYearStr] =  schoolYearStr;
+            }
           });
     
           let filters = this.state.filters;
           filters.forEach(function(filter){
             if(filter.field == 'schoolYear'){
-                filter.value = syOptions[0] ? syOptions[0].value: null;
+                filter.value = defaultSy ? defaultSy.key: null;
                 filter.options = syOptions;
+            } else if(filter.field == 'semester'){
+                filter.value = defaultSem;
             }
           })
           this.setState({filters: filters})
-          //this.getClass();
+          //this.getClasss();
         })
      }
 
