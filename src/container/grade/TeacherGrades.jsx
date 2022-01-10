@@ -116,7 +116,9 @@ class TeacherGrades extends React.Component {
                 if(item['grade'] == null || item['grade'] == 0 || item['status'] != "DRAFT"){
                     allGradedAndDraft = false;
                 }
-                item['student'] = item.student.studentNumber;
+                item['studentNumber'] = item.student.studentNumber;
+                item['studentName'] = item.student.firstName + " " + item.student.lastName;
+                item['emailAddress'] = item.student.emailAddress;
                 item['classCode'] = item.enrolledClass.classCode;
                 item['subjectCode'] = item.enrolledClass.subject.subjectCode;
                 item['grade'] = item['grade'] != 0 ? item['grade'] : '-----';

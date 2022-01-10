@@ -27,7 +27,12 @@ class ViewGradeList extends React.Component {
                 headerStyle: (colum, colIndex) => {
                     return { width: '50px', textAlign: 'center' };
                 }},
-            {dataField: "student", text: "Student", sort: true}, 
+            
+            {dataField: "studentNumber", text: "Student No.", sort: true}, 
+            {dataField: "studentName", text: "Name", sort: true}, 
+            {dataField: "emailAddress", text: "Email Address", sort: true,  headerStyle: (colum, colIndex) => {
+                return { width: '250px'};
+            }}, 
  
             {dataField: "classCode", text: "Class Code", sort: true},
             // {dataField: "GradeType", text: "Grade Type", sort: true},
