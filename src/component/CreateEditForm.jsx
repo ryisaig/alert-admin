@@ -55,11 +55,11 @@ function CreateEditForm(props) {
                 
                 successAction();
 
-                if(!props.values.disableReload){
-                    window.location.href = cancelUrl
-                } else {
-                    window.location = "../";
-                }
+                // if(!props.values.disableReload){
+                //     window.location.href = cancelUrl
+                // } else {
+                //     window.location = "../";
+                // }
 
             })
         }).catch( e => {

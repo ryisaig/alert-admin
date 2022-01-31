@@ -126,8 +126,8 @@ class TeacherGrades extends React.Component {
                 item['classCode'] = item.enrolledClass.classCode;
                 item['subjectCode'] = item.enrolledClass.subject.subjectCode;
                 item['grade'] = item['grade'] != 0 ? item['grade'] : '-----';
-                item['grade'] = item['grade'] == 9 ? 'INC' : item['grade'];
-                item['grade'] = item['grade'] == 10 ? 'DRP' : item['grade'];
+                // item['grade'] = item['grade'] == 9 ? 'INC' : item['grade'];
+                // item['grade'] = item['grade'] == 10 ? 'DRP' : item['grade'];
                 item['removalGrade'] = item['removalGrade'] != 0 ? item['removalGrade'] : '-----';
                 item['finalGrade'] = item['finalGrade'] != 0 ? item['finalGrade'] : '-----';
                 item['creditUnit'] = item['creditUnit'] != 0 ? item['creditUnit'] : '-----';

@@ -117,8 +117,8 @@ class EditSubject extends React.Component {
               {key: "2.75", value:"2.75"},
               {key: "3.00", value:"3.00"},
               {key: "4.00", value:"4.00"},
-              {key: "9.00", value:"INC"},
-              {key: "10.00", value:"5.00"},
+              {key: "INC", value:"INC"},
+              {key: "5.00", value:"5.00"},
               {key: "DRP", value:"DRP"}
             ],            
             editable: true,
