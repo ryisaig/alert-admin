@@ -11,7 +11,7 @@ import { BASE_SERVER_URL } from '../utils/BaseServerUrl';
 import axios from 'axios';
 import swal from 'sweetalert';
 import GenericRequest from '../utils/GenericRequest';
-import { Computer, ArrowForward, AccountBox, FolderOpen, GroupAdd, Send, Work, SyncAlt , Poll,Assignment, Settings, Apps, VpnKeyOutlined, Close, PeopleAlt, SignalCellularAlt, GroupWork, AssignmentInd, BusinessCenter, Apartment, School, EmojiPeople, LocationOn, SupervisorAccount, DateRange, Help, ContactPhone, FindInPage, Build, Schedule, PermContactCalendar, Functions, CastConnected, VerticalSplit, ExitToApp, LibraryAddCheck, PlaylistAddCheck, PlaylistAdd} from '@material-ui/icons';
+import { Computer, ArrowForward, AccountBox, FolderOpen, GroupAdd, Send, Work, SyncAlt , Poll,Assignment, Settings, Apps, VpnKeyOutlined, Close, PeopleAlt, SignalCellularAlt, GroupWork, AssignmentInd, BusinessCenter, Apartment, School, EmojiPeople, LocationOn, SupervisorAccount, DateRange, Help, ContactPhone, FindInPage, Build, Schedule, PermContactCalendar, Functions, CastConnected, VerticalSplit, ExitToApp, LibraryAddCheck, PlaylistAddCheck, PlaylistAdd, WarningRounded, PeopleRounded, ExitToAppRounded, GitHub, CallMerge, Usb} from '@material-ui/icons';
 
 export default class Layout extends React.Component {
 
@@ -39,10 +39,9 @@ export default class Layout extends React.Component {
     }
 
     componentWillMount(){
-        if(sessionStorage.getItem("luna_session") == null){
+        if(sessionStorage.getItem("call_tree_session") == null){
             window.location.href = "../login"
         } 
-        this.userId = sessionStorage.getItem("luna_id")
     }
 
     handleClickOutside(event) {
@@ -60,34 +59,9 @@ export default class Layout extends React.Component {
     }
 
     signout(){
-        
-        let sessionId = sessionStorage.getItem("luna_session");
-        const params = {
-            requestId: GenericRequest().requestId,
-            session: {
-                sessionValue: GenericRequest().sessionValue,
-                sessionId: GenericRequest().sessionId,
-                username: GenericRequest().username,
-                application: GenericRequest().application
-            },
-        }
-
-        axios.post(BASE_SERVER_URL + 'session/'+sessionId, params)
-        .then(res => {
-            swal("Success!", "You've been logged-out", "success").then(()=>{
-                sessionStorage.removeItem("luna_session");
-                sessionStorage.removeItem("luna_user");
-
-                window.location.href = "../login";
-            })
-        }).catch( e => {
-            swal("Error!", "Error occurred. Please try again", "error").then(()=>{
-                sessionStorage.removeItem("luna_session");
-                sessionStorage.removeItem("luna_user");
-                window.location.href = "../login"
-            })
-            
-        })
+        sessionStorage.removeItem("call_tree_session");
+        sessionStorage.removeItem("call_tree_name");
+        window.location.href = "../login";
     }
 
     download(file){
@@ -109,10 +83,9 @@ export default class Layout extends React.Component {
         return(
             <div>
                   <div style={{borderBottom: '1px solid rgba(0,0,0,.125)', width: '100%', height: '50px'}}>
-            <Navbar expand="lg" bg="info" fixed="top" style={{boxShadow: '2px 4px 10px rgba(0,0,0,.2)', height: '50px'}} >
+            <Navbar expand="lg" fixed="top" style={{boxShadow: '2px 4px 10px rgba(0,0,0,.2)', height: '50px', backgroundColor: '#3880ff'}} >
                 <Navbar.Brand href="../../../home" style={{position: 'absolute', left: '50%', display: 'block', width: '200px', marginLeft: '-100px'}}>
-                    <img src={logo} alt="" style={{width: '30px'}}/>
-                    <span style={{marginLeft: '10px', color: '#E0F7FA'}}>GRADING PORTAL</span>
+                    <span style={{marginLeft: '10px', color: '#E0F7FA'}}>CALL TREE ADMIN PORTAL</span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -126,15 +99,17 @@ export default class Layout extends React.Component {
             <div id="mySidenav"  ref={this.wrapperRef} className="sidenav" style={{width: this.state.sideNavWidth, boxShadow: '2px 4px 10px rgba(0,0,0,.2)', zIndex: 9999, backgroundColor:  '#E0E0E0'}} >
                 <a href="#" onClick={this.toggleNav.bind(this)} style={{padding: '1px', float: 'right'}}><Close/></a>
                 <div style={{width: '100%', height: '160px', backgroundColor: '#E0E0E0', marginBottom: '20px', paddingLeft: '35px', paddingTop: '30px', marginTop: '40px'}}>
-                   <div style={{borderRadius: "50%", width: "60px", height: "60px", backgroundColor: "#17a2b8", marginBottom: '20px'}}>
-                       <center><span style={{fontSize: "40px", fontWeight: "bold", color: "white"}}>{sessionStorage.getItem("luna_name") ? sessionStorage.getItem("luna_name").charAt(0) : ""}</span></center>
+                   <div style={{borderRadius: "50%", width: "60px", height: "60px", backgroundColor: "#3880ff", marginBottom: '20px'}}>
+                       <center><span style={{fontSize: "40px", fontWeight: "bold", color: "white"}}>{sessionStorage.getItem("call_tree_name") ? sessionStorage.getItem("call_tree_name").charAt(0) : ""}</span></center>
                    </div>
-                   <h6 style={{color: '#424242', fontWeight: "bold"}}> {sessionStorage.getItem("luna_name")}</h6>
-                   <p style={{color: '#424242', fontSize: '12px'}}> {sessionStorage.getItem("luna_user") ? sessionStorage.getItem("luna_user").toUpperCase() : ""}</p>
+                   <h6 style={{color: '#424242', fontWeight: "bold"}}> {sessionStorage.getItem("call_tree_name")}</h6>
+                   <p style={{color: '#424242', fontSize: '12px'}}> {sessionStorage.getItem("call_tree_name") ? sessionStorage.getItem("call_tree_name").toUpperCase() : ""}</p>
                 </div>
                 <div>
-                <ListGroup.Item as={Link} style={linkStyle} to="../../../grades"><SignalCellularAlt/>&nbsp;&nbsp;&nbsp;&nbsp;My Students</ListGroup.Item>                        
-                <ListGroup.Item as={Link} style={linkStyle} to="#" onClick={this.signout}><ExitToApp/>&nbsp;&nbsp;&nbsp;&nbsp;Sign-out</ListGroup.Item>
+                <ListGroup.Item as={Link} style={linkStyle} to="../../../calltree"><Usb/>&nbsp;&nbsp;&nbsp;&nbsp;Call Tree List</ListGroup.Item>
+                {/* <ListGroup.Item as={Link} style={linkStyle} to="../../../alerts"><WarningRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Alerts</ListGroup.Item> */}
+                <ListGroup.Item as={Link} style={linkStyle} to="#" onClick={this.signout}><PeopleRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Admin Users</ListGroup.Item>                        
+                <ListGroup.Item as={Link} style={linkStyle} to="#" onClick={this.signout}><ExitToAppRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Sign-out</ListGroup.Item>
                 </div>
             </div>
             <Table className="main-layout" responsive style={{display: 'flex', flexDirection: 'column', flex: "1 1 100%", height: '100%'}}>
@@ -146,11 +121,11 @@ export default class Layout extends React.Component {
                     </tr>
                 </tbody>
             </Table>
-            <Navbar expand="lg" bg="info" fixed="bottom" style={{boxShadow: '2px 4px 10px rgba(0,0,0,.2)', padding: '0'}} >
+            {/* <Navbar expand="lg" bg="info" fixed="bottom" style={{boxShadow: '2px 4px 10px rgba(0,0,0,.2)', padding: '0'}} >
                     <div className="bg-light text-dark" style={{ height: '3rem', width: '100%', paddingTop: '10px'}}>
-                        <center>Luna Colleges @ 2020</center>
+                        <center>MDRRMO</center>
                     </div>
-            </Navbar>
+            </Navbar> */}
         </div>
         )
     }

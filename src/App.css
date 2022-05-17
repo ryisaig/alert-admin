@@ -25,7 +25,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #3880ff;
 }
 
 @keyframes App-logo-spin {
@@ -83,7 +83,7 @@
 }
 
 .nav-tabs a, .nav-tabs a:hover {
-  color: #17a2b8;
+  color: #3880ff;
 }
 
 #viewListTable tbody tr td a {
@@ -93,8 +93,8 @@
 }
 
 .react-bootstrap-table-pagination .active .page-link{
-  background-color: #17a2b8 !important;
-  border-color:#17a2b8 !important
+  background-color: #3880ff !important;
+  border-color:#3880ff !important
 }
 
 .table-bordered td, .table-bordered th {
@@ -102,7 +102,7 @@
 }
 
 .table-bordered th {
-  background-color: #17a2b8;
+  background-color: #3880ff;
   color: #fff;
 }
 

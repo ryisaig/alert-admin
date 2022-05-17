@@ -7,8 +7,7 @@ import {
 } from "react-router-dom";
 
 import Layout from './container/Layout';
-import ViewGradeList from './container/grade/ViewGradeList';
-import EditGrade from './container/grade/EditGrade';
+import CallTreePage from './container/calltree/CallTreePage';
 import Login from './container/authenticate/LoginForm';
 import MyAccount from './container/authenticate/MyAccount';
 import EditAccount from './container/authenticate/EditAccount';
@@ -41,14 +40,9 @@ function App() {
                     </Switch>
                   </MyAccount>
                 }/>
-                 <Route path="/grades" render={(props) => 
-                  <ViewGradeList {...props}>
-                     <Switch>
-                      <Route path="/grades/:id/edit" render={(props) => 
-                        <EditGrade {...props}/>
-                      }/>
-                    </Switch>
-                    </ViewGradeList>
+                 <Route path="/calltree" render={(props) => 
+                  <CallTreePage {...props}>
+                    </CallTreePage>
                 }/>
                 <Route path="/" render={(props) => 
                    <InstructionPage/>

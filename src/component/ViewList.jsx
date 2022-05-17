@@ -65,7 +65,7 @@ function ViewList(props) {
              {
                props.values.isCreatable &&      
                 <InputGroup.Prepend>
-                  <Button variant="outline-info" as={Link} to={props.values.createUrl}><Add/>
+                  <Button style={{backgroundColor: "#3880ff"}}as={Link} to={props.values.createUrl}><Add/>
                   </Button>
                 </InputGroup.Prepend> 
               } 

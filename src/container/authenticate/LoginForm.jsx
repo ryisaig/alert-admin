@@ -29,31 +29,22 @@ class Login extends React.Component {
         e.preventDefault();
 
         const params = {
-            requestId: GenericRequest().requestId,
-            session: {
-                sessionValue: GenericRequest().sessionValue,
-                sessionId: GenericRequest().sessionId,
-                username: GenericRequest().username,
-                application: GenericRequest().application
-            } ,
             username: fields['username'],
-            password: fields['password'],
-            application: 'GRADING_PORTAL',
-            clientIp: ''           
+            password: fields['password'],           
         }
         
-        axios.post(BASE_SERVER_URL + 'session', params)
+        axios.post(BASE_SERVER_URL + 'access/verify', params)
         .then(res => {
-            swal("Success!", "You have been successfully logged-in", "success").then(()=>{
-                sessionStorage.setItem("luna_user", res.data.username);
-                sessionStorage.setItem("luna_session", res.data.sessionId);
-                sessionStorage.setItem("luna_id", res.data.userId);
-                sessionStorage.setItem("luna_name", res.data.name);
-                sessionStorage.setItem("email", res.data.email);
-
-                window.location.href = "./";
-       
-            })
+            if(res.data){
+                swal("Success!", "You have been successfully logged-in", "success").then(()=>{
+                    sessionStorage.setItem("call_tree_session", Math.random());
+                    sessionStorage.setItem("call_tree_name", res.data);
+                    window.location.href = "./";
+                });
+            } else {
+                swal("Error!", "Invalid Login", "error");
+            }
+            
         }).catch( e => {
             swal("Error!", "Invalid Login", "error");
         })
@@ -66,13 +57,13 @@ class Login extends React.Component {
             <form onSubmit={(e) => this.login(e, this.state.fields)} class="bg-light" style={{width: '500px', margin: 'auto', padding: '50px', borderRadius: '20px', position: 'absolute', top: '50%', transform: 'translateY(-50%) translateX(-50%)', left: '50%', boxShadow: '2px 4px 10px rgba(0,0,0,.2)'}}>
                     <center>
                         {/* <img src={logo} alt="" style={{width: '50px'}}/> */}
-                    <span style={{marginLeft: '10px', fontSize: '20px'}}>Grading Portal</span>
+                    <span style={{marginLeft: '10px', fontSize: '20px'}}>Call Tree - Admin Portal</span>
                     </center>
                 <div style={{marginTop: '30px'}}>
 
                 <div className="form-group">
-                    <label>Employee ID</label>
-                    <input  id="username" type="text" required className="form-control" placeholder="Employee ID" onChange={this.handleFormValueChange}/>
+                    <label>User ID</label>
+                    <input  id="username" type="text" required className="form-control" placeholder="User ID" onChange={this.handleFormValueChange}/>
                 </div>
 
                 <div className="form-group">
