@@ -70,7 +70,7 @@ class Login extends React.Component {
                     <label>Password</label>
                     <input  id="password" type="password" required className="form-control" placeholder="Password" onChange={this.handleFormValueChange}/>
                 </div>
-                <button type="submit" className="btn btn-info btn-block" style={{height: '50px', marginTop: '30px'}}>Login</button>   
+                <button type="submit" className="btn btn-block" style={{height: '50px', marginTop: '30px', backgroundColor: '#3880ff', color: '#fff'}}>Login</button>   
                 <p className="forgot-password text-right" style={{marginTop: '15px'}}>
                     {/* <a href="#">Reset Password</a> */}
                 </p>     

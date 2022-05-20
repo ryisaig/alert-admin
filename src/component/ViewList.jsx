@@ -64,8 +64,8 @@ function ViewList(props) {
             <InputGroup className="mb-3" style={{width: '500px'}}>
              {
                props.values.isCreatable &&      
-                <InputGroup.Prepend>
-                  <Button style={{backgroundColor: "#3880ff"}}as={Link} to={props.values.createUrl}><Add/>
+               <InputGroup.Prepend>
+                  <Button style={{backgroundColor: "#3880ff"}} onClick={props.values.handleShow.bind(this)}><Add/>
                   </Button>
                 </InputGroup.Prepend> 
               } 
