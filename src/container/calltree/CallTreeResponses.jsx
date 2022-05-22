@@ -132,10 +132,11 @@ class CallTreeResponses extends React.Component {
                     <MapDetails lat={this.state.currentGeoLocationX} lng={this.state.currentGeoLocationY}/>
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="secondary" onClick={this.handleClose.bind(this)}>
+                    <br/>
+                {/* <Button variant="secondary" onClick={this.handleClose.bind(this)}>
                     Close
                 </Button>
-                
+                 */}
                 </Modal.Footer>
             </Modal>
         </>
