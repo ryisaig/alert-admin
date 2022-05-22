@@ -108,7 +108,7 @@ export default class Layout extends React.Component {
                 <div>
                 <ListGroup.Item as={Link} style={linkStyle} to="../../../calltree"><Usb/>&nbsp;&nbsp;&nbsp;&nbsp;Call Tree List</ListGroup.Item>
                 {/* <ListGroup.Item as={Link} style={linkStyle} to="../../../alerts"><WarningRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Alerts</ListGroup.Item> */}
-                <ListGroup.Item as={Link} style={linkStyle} to="#" onClick={this.signout}><PeopleRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Admin Users</ListGroup.Item>                        
+                <ListGroup.Item as={Link} style={linkStyle} to="../../../users" ><PeopleRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Users</ListGroup.Item>                        
                 <ListGroup.Item as={Link} style={linkStyle} to="#" onClick={this.signout}><ExitToAppRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Sign-out</ListGroup.Item>
                 </div>
             </div>

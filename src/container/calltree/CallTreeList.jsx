@@ -9,7 +9,7 @@ import {
   } from "react-router-dom";
 import { Add, Create, OpenInNew, ViewAgendaRounded, ViewColumn } from '@material-ui/icons';
   
-class TeacherGrades extends React.Component {
+class CallTreeList extends React.Component {
    username =  sessionStorage.getItem("luna_user");
     state = {
         title: "Call Tree List",
@@ -191,4 +191,4 @@ class TeacherGrades extends React.Component {
 
 }
 
-export default TeacherGrades;
+export default CallTreeList;

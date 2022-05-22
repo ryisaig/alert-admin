@@ -109,3 +109,10 @@
 .react-bootstrap-table-pagination-total {
   font-size: 14px !important;
 }
+
+@media (min-width: 576px){
+.modal-dialog {
+    max-width: 1200px !important;
+    margin: 1.75rem auto;
+}
+}

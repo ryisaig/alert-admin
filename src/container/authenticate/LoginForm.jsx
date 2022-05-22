@@ -39,7 +39,7 @@ class Login extends React.Component {
                 swal("Success!", "You have been successfully logged-in", "success").then(()=>{
                     sessionStorage.setItem("call_tree_session", Math.random());
                     sessionStorage.setItem("call_tree_name", res.data);
-                    window.location.href = "./";
+                    window.location.href = "./calltree";
                 });
             } else {
                 swal("Error!", "Invalid Login", "error");
