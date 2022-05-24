@@ -11,7 +11,7 @@ import { BASE_SERVER_URL } from '../utils/BaseServerUrl';
 import axios from 'axios';
 import swal from 'sweetalert';
 import GenericRequest from '../utils/GenericRequest';
-import { Computer, ArrowForward, AccountBox, FolderOpen, GroupAdd, Send, Work, SyncAlt , Poll,Assignment, Settings, Apps, VpnKeyOutlined, Close, PeopleAlt, SignalCellularAlt, GroupWork, AssignmentInd, BusinessCenter, Apartment, School, EmojiPeople, LocationOn, SupervisorAccount, DateRange, Help, ContactPhone, FindInPage, Build, Schedule, PermContactCalendar, Functions, CastConnected, VerticalSplit, ExitToApp, LibraryAddCheck, PlaylistAddCheck, PlaylistAdd, WarningRounded, PeopleRounded, ExitToAppRounded, GitHub, CallMerge, Usb} from '@material-ui/icons';
+import { Computer, ArrowForward, AccountBox, FolderOpen, GroupAdd, Send, Work, SyncAlt , Poll,Assignment, Settings, Apps, VpnKeyOutlined, Close, PeopleAlt, SignalCellularAlt, GroupWork, AssignmentInd, BusinessCenter, Apartment, School, EmojiPeople, LocationOn, SupervisorAccount, DateRange, Help, ContactPhone, FindInPage, Build, Schedule, PermContactCalendar, Functions, CastConnected, VerticalSplit, ExitToApp, LibraryAddCheck, PlaylistAddCheck, PlaylistAdd, WarningRounded, PeopleRounded, ExitToAppRounded, GitHub, CallMerge, Usb, InfoOutlined} from '@material-ui/icons';
 
 export default class Layout extends React.Component {
 
@@ -107,6 +107,7 @@ export default class Layout extends React.Component {
                 </div>
                 <div>
                 <ListGroup.Item as={Link} style={linkStyle} to="../../../calltree"><Usb/>&nbsp;&nbsp;&nbsp;&nbsp;Call Tree List</ListGroup.Item>
+                <ListGroup.Item as={Link} style={linkStyle} to="../../../informational"><InfoOutlined/>&nbsp;&nbsp;&nbsp;&nbsp;Informational</ListGroup.Item>
                 {/* <ListGroup.Item as={Link} style={linkStyle} to="../../../alerts"><WarningRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Alerts</ListGroup.Item> */}
                 <ListGroup.Item as={Link} style={linkStyle} to="../../../users" ><PeopleRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Users</ListGroup.Item>                        
                 <ListGroup.Item as={Link} style={linkStyle} to="#" onClick={this.signout}><ExitToAppRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Sign-out</ListGroup.Item>

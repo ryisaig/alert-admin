@@ -1,7 +1,7 @@
 import React from 'react';
 import CallTreeList from './CallTreeList';
   
-class ViewGradeList extends React.Component {
+class CallTreePage extends React.Component {
 
     state = {
         title: "Call Tree",
@@ -9,7 +9,7 @@ class ViewGradeList extends React.Component {
 
     render(){
         return(
-            <div>          
+            <div>   
                 <CallTreeList  sideContent={this.props.children} />                 
             </div>
         )
@@ -18,4 +18,4 @@ class ViewGradeList extends React.Component {
 
 }
 
-export default ViewGradeList;
+export default CallTreePage;

@@ -9,11 +9,17 @@ import {
   } from "react-router-dom";
 import { Add, Create, OpenInNew, ViewAgendaRounded, ViewColumn } from '@material-ui/icons';
 import SockJsClient from 'react-stomp';
+import MyEditor from './MyEditor';
+import { EditorState, convertToRaw } from 'draft-js';
+import { stateToHTML } from "draft-js-export-html"
 
-class CallTreeList extends React.Component {
+class InformationalList extends React.Component {
    username =  sessionStorage.getItem("luna_user");
+
+
+
     state = {
-        title: "Call Tree List",
+        title: "Informational Call Tree",
         isSearchable: false,
         isPrintable: false,
         isCreatable: true,
@@ -23,19 +29,7 @@ class CallTreeList extends React.Component {
                     return { width: '50px', textAlign: 'center' };
                 }},
             {dataField: "createdDate", text: "Date", sort: true}, 
-            {dataField: "subject", text: "Title", sort: true,  
-                headerStyle: (colum, colIndex) => {
-                    return { width: '150px', textAlign: 'center' };
-                }}, 
-                {dataField: "caption", text: "Caption", sort: true,  
-                headerStyle: (colum, colIndex) => {
-                    return { width: '300px', textAlign: 'center' };
-                }}, 
-
-            {dataField: "totalResponses", text: "Total Responses", sort: true},
-            {dataField: "totalSafe", text: "Total Safe", sort: true},
-            {dataField: "totalUncertain", text: "Total Uncertain", sort: true},
-            {dataField: "totalInDanger", text: "Total In Danger", sort: true},
+            {dataField: "subject", text: "Title", sort: true},
             {dataField: "actions", text: "Actions", sort: true, 
                 headerStyle: (colum, colIndex) => {
                     return { width: '80px'};
@@ -43,7 +37,7 @@ class CallTreeList extends React.Component {
                 formatter: (cell, row) => (
                     <>  
                          {/* <Button as={Link} variant="outline-info"  to={"/calltree/" + row['id']+ "/details"}><ImageSearch/></Button>&nbsp; */}
-                        <Button as={Link} style={{backgroundColor: '#3880ff'}}  to={"/calltree/" + row['id']+ "/responses"}><OpenInNew/></Button>&nbsp;
+                        <Button as={Link} style={{backgroundColor: '#3880ff'}}  onClick={() => {this.setState({currentViewContent: row["content"], currentViewTitle: row["subject"]}); this.handleViewShow();}}><OpenInNew/></Button>&nbsp;
                         {/* <Button as={Link} variant="outline-danger" to="#" onClick={()=>this.delete(row['id'])}><DeleteOutline/></Button> */}
 
                     </>
@@ -55,8 +49,20 @@ class CallTreeList extends React.Component {
         handleShow: this.handleShow.bind(this),
         responseTypes: [1,1,1],
         callTreeTitle: "",
-        callTreeCaption: "",
+        editorState: EditorState.createEmpty(),
+        openViewModal: false,
+        handleViewShow: this.handleViewShow.bind(this),
+        currentViewContent: "",
+        currentViewTitle: "",
+
     }
+
+    
+    onEditorStateChange = (editorState) => {
+        this.setState({
+        editorState,
+        });
+    };
 
     getCallTreeList(){
         let classId = 0;
@@ -68,7 +74,7 @@ class CallTreeList extends React.Component {
             }
         })
 
-        axios.get(BASE_SERVER_URL + 'calltree/all').then(res => {
+        axios.get(BASE_SERVER_URL + 'informational').then(res => {
             this.setState({data: res.data})
         })
     }
@@ -89,24 +95,30 @@ class CallTreeList extends React.Component {
     this.setState({openModal: false});
    } 
 
+
+   handleViewClose(){
+    this.setState({openViewModal: false});
+   } 
+
+
    handleSubmit(){
     const params = {
         subject: this.state.callTreeTitle,
         username: sessionStorage.getItem("call_tree_name"),
-        caption: this.state.callTreeCaption,
-        responseTypes: "" + this.state.responseTypes[0] +"," +  this.state.responseTypes[1] +","  + this.state.responseTypes[2]
+        content: stateToHTML(this.state.editorState.getCurrentContent()),
     }
 
-    axios.post(BASE_SERVER_URL + 'calltree', params)
+    axios.post(BASE_SERVER_URL + 'informational', params)
     .then(res => {
         if(res.data){
-            swal("Success!", "You have successfully triggered a call tree", "success");
+            swal("Success!", "You have successfully triggered an informational call tree", "success");
+            
             this.getCallTreeList();
         } else {
-            swal("Error!", "Error occured while creating a call tree", "error");
+            swal("Error!", "Error occured while creating an informational call tree", "error");
         }
     }).catch( e => {
-        swal("Error!", "Error occured while creating a call tree", "error");
+        swal("Error!", "Error occured while creating an informational call tree", "error");
     })
 
     this.setState({openModal: false});
@@ -114,6 +126,10 @@ class CallTreeList extends React.Component {
 
    handleShow(){
     this.setState({openModal: true});
+   }
+
+   handleViewShow(){
+    this.setState({openViewModal: true});
    }
 
    handleTitle(title){
@@ -131,12 +147,6 @@ class CallTreeList extends React.Component {
     resp[index] = resp[index] === 0 ? 1 : 0;
     this.setState({responseTypes: resp});
    }
-
-    SOCKET_URL = 'http://localhost:8080/ws-message';
-  
-   onMessageReceived = (msg) => {
-     this.getCallTreeList();
-}
  
 
     render(){
@@ -146,39 +156,13 @@ class CallTreeList extends React.Component {
             <ViewList values={this.state} sideContent={this.props.sideContent} handleKeywordChange={this.handleKeywordChange} search={this.search} component={this}/>           
          <Modal show={this.state.openModal} onHide={this.handleClose.bind(this)}>
                 <Modal.Header closeButton>
-                <Modal.Title>Trigger Call Tree</Modal.Title>
+                <Modal.Title>Create Informational Call Tree</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                 <div className="form-group">
-                    <input  id="title" type="text" required className="form-control" placeholder="Title Eg: Are you safe?" onChange={(e) => {this.handleTitle(e.target.value)}}/>
+                    <input  id="title" type="text" required className="form-control" placeholder="Title" onChange={(e) => {this.handleTitle(e.target.value)}}/>
                 </div>
-                <div className="form-group">
-                    <input  id="caption" type="text" required className="form-control" placeholder="Caption Eg: Please responsd to this survey" onChange={(e) => {this.handleCaption(e.target.value)}}/>
-                </div>
-                <Form.Group className="mb-3">
-                    <label>Type of responses</label>
-                    <Form.Check
-                        type="checkbox"
-                        id="safe"
-                        label="I'm totally safe"
-                        onChange={() => this.handleResponseTypeChange(0)}
-                        checked={this.state.responseTypes[0]}
-                    />
-                    <Form.Check
-                        type="checkbox"
-                        id="uncertain"
-                        label="I'm safe but uncertain"
-                        onChange={() => this.handleResponseTypeChange(1)}
-                        checked={this.state.responseTypes[1]}
-                    />
-                     <Form.Check
-                        type="checkbox"
-                        id="needHelp"
-                        label="I urgently need help"
-                        onChange={() => this.handleResponseTypeChange(2)}
-                        checked={this.state.responseTypes[2]}
-                    />
-                </Form.Group>
+                <MyEditor editorState={this.state.editorState} onEditorStateChange={this.onEditorStateChange}/>
 
                 </Modal.Body>
                 <Modal.Footer>
@@ -186,16 +170,26 @@ class CallTreeList extends React.Component {
                     Close
                 </Button>
                 <Button variant="primary" onClick={this.handleSubmit.bind(this)}>
-                    Submit
+                    Publish
                 </Button>
                 </Modal.Footer>
             </Modal>
-            <SockJsClient
-                url={this.SOCKET_URL}
-                topics={['/topic/responded']}
-                onMessage={(msg)=> this.onMessageReceived(msg)}
-                debug={false}
-                />
+
+            <Modal show={this.state.openViewModal} onHide={this.handleViewClose.bind(this)}>
+                <Modal.Header closeButton>
+                <Modal.Title>{this.state.currentViewTitle}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+            
+                <div dangerouslySetInnerHTML={{ __html: this.state.currentViewContent }} />
+
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={this.handleViewClose.bind(this)}>
+                    Close
+                </Button>
+                </Modal.Footer>
+            </Modal>
         </>
        )
     }
@@ -205,4 +199,4 @@ class CallTreeList extends React.Component {
 
 }
 
-export default CallTreeList;
+export default InformationalList;

@@ -16,6 +16,7 @@ import EditAccount from './container/authenticate/EditAccount';
 import axios from 'axios'
 import InstructionPage from './component/InstructionPage';
 import ViewUserList from './container/user/ViewUserList';
+import InformationalList from './container/calltree/InformationalList';
 
 axios.interceptors.request.use((config) => {
   const token = sessionStorage.getItem("luna_session");
@@ -54,6 +55,11 @@ function App() {
                  <Route path="/calltree" render={(props) => 
                   <CallTreePage {...props}>
                     </CallTreePage>
+                }/>
+                
+                <Route path="/informational" render={(props) => 
+                  <InformationalList {...props}>
+                    </InformationalList>
                 }/>
                 
                 <Route path="/" render={(props) => 
