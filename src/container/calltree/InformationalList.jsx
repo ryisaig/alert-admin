@@ -8,7 +8,6 @@ import {
     Link
   } from "react-router-dom";
 import { Add, Create, OpenInNew, ViewAgendaRounded, ViewColumn } from '@material-ui/icons';
-import SockJsClient from 'react-stomp';
 import MyEditor from './MyEditor';
 import { EditorState, convertToRaw } from 'draft-js';
 import { stateToHTML } from "draft-js-export-html"

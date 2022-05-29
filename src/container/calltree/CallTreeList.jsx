@@ -163,14 +163,14 @@ class CallTreeList extends React.Component {
                         label="I'm totally safe"
                         onChange={() => this.handleResponseTypeChange(0)}
                         checked={this.state.responseTypes[0]}
-                    />
+                    /><span style={{color:"black", fontSize: "13px", fontStyle: "italic", marginLeft: "20px"}}>Ligtas ako</span>
                     <Form.Check
                         type="checkbox"
                         id="uncertain"
                         label="I'm safe but uncertain"
                         onChange={() => this.handleResponseTypeChange(1)}
                         checked={this.state.responseTypes[1]}
-                    />
+                    /><span style={{color:"black", fontSize: "13px", fontStyle: "italic", marginLeft: "20px"}}>Ligtas ako ngunit walang kasiguruhan</span>
                      <Form.Check
                         type="checkbox"
                         id="needHelp"
@@ -178,6 +178,7 @@ class CallTreeList extends React.Component {
                         onChange={() => this.handleResponseTypeChange(2)}
                         checked={this.state.responseTypes[2]}
                     />
+                    <span style={{color:"black", fontSize: "13px", fontStyle: "italic", marginLeft: "20px"}}>Kailangan ko ng tulong</span>
                 </Form.Group>
 
                 </Modal.Body>
