@@ -15,7 +15,7 @@ import { ImageSearch, Create, MapOutlined } from '@material-ui/icons';
 class ViewUserList extends React.Component {
 
     state = {
-        title: "Users",
+        title: "Community Users",
         isSearchable: false,
         isPrintable: false,
         isCreatable: false,

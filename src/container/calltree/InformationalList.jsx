@@ -14,11 +14,8 @@ import { stateToHTML } from "draft-js-export-html"
 
 class InformationalList extends React.Component {
    username =  sessionStorage.getItem("luna_user");
-
-
-
     state = {
-        title: "Informational Call Tree",
+        title: "Alerts",
         isSearchable: false,
         isPrintable: false,
         isCreatable: true,

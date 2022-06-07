@@ -17,6 +17,9 @@ import axios from 'axios'
 import InstructionPage from './component/InstructionPage';
 import ViewUserList from './container/user/ViewUserList';
 import InformationalList from './container/calltree/InformationalList';
+import AlertList from './container/calltree/AlertList';
+import Dashboard from './container/calltree/Dashboard';
+import ViewAssessmentList from './container/role/ViewAssessmentList';
 
 axios.interceptors.request.use((config) => {
   const token = sessionStorage.getItem("luna_session");
@@ -57,9 +60,22 @@ function App() {
                     </CallTreePage>
                 }/>
                 
-                <Route path="/informational" render={(props) => 
+                <Route path="/alerts" render={(props) => 
                   <InformationalList {...props}>
                     </InformationalList>
+                }/>
+                 <Route path="/dashboard" render={(props) => 
+                  <Dashboard {...props}>
+                    </Dashboard>
+                }/>
+                <Route path="/emergency" render={(props) => 
+                  <AlertList {...props}>
+                    </AlertList>
+                }/>
+                
+                <Route path="/assessments" render={(props) => 
+                  <ViewAssessmentList {...props}>
+                    </ViewAssessmentList>
                 }/>
                 
                 <Route path="/" render={(props) => 

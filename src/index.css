@@ -1,5 +1,4 @@
 html, body, #root, #app, #app>div, #app>div>.table-responsive{
-  height: 100% !important
 }
 
 * {

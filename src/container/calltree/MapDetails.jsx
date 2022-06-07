@@ -6,7 +6,7 @@ class MapDetails extends Component {
  return (
  <div className="MapDetails">
     <Map google={this.props.google} zoom={20}
-            style={{width: 1150}}
+            style={{width: 1150, height: 400}}
             initialCenter={{
             lat: this.props.lat,
             lng: this.props.lng

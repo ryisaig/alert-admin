@@ -39,7 +39,7 @@ class Login extends React.Component {
                 swal("Success!", "You have been successfully logged-in", "success").then(()=>{
                     sessionStorage.setItem("call_tree_session", Math.random());
                     sessionStorage.setItem("call_tree_name", res.data);
-                    window.location.href = "./calltree";
+                    window.location.href = "./dashboard";
                 });
             } else {
                 swal("Error!", "Invalid Login", "error");
@@ -57,7 +57,7 @@ class Login extends React.Component {
             <form onSubmit={(e) => this.login(e, this.state.fields)} class="bg-light" style={{width: '500px', margin: 'auto', padding: '50px', borderRadius: '20px', position: 'absolute', top: '50%', transform: 'translateY(-50%) translateX(-50%)', left: '50%', boxShadow: '2px 4px 10px rgba(0,0,0,.2)'}}>
                     <center>
                         {/* <img src={logo} alt="" style={{width: '50px'}}/> */}
-                    <span style={{marginLeft: '10px', fontSize: '20px'}}>Call Tree - Admin Portal</span>
+                    <span style={{marginLeft: '10px', fontSize: '20px'}}>ALERTagaytay</span>
                     </center>
                 <div style={{marginTop: '30px'}}>
 
