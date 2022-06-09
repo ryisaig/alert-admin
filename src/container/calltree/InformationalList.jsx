@@ -7,7 +7,7 @@ import swal from 'sweetalert';
 import {
     Link
   } from "react-router-dom";
-import { Add, Create, OpenInNew, ViewAgendaRounded, ViewColumn } from '@material-ui/icons';
+import { Add, Create, DeleteOutline, OpenInNew, ViewAgendaRounded, ViewColumn } from '@material-ui/icons';
 import MyEditor from './MyEditor';
 import { EditorState, convertToRaw } from 'draft-js';
 import { stateToHTML } from "draft-js-export-html"
@@ -28,12 +28,13 @@ class InformationalList extends React.Component {
             {dataField: "subject", text: "Title", sort: true},
             {dataField: "actions", text: "Actions", sort: true, 
                 headerStyle: (colum, colIndex) => {
-                    return { width: '80px'};
+                    return { width: '180px'};
                 },
                 formatter: (cell, row) => (
                     <>  
                          {/* <Button as={Link} variant="outline-info"  to={"/calltree/" + row['id']+ "/details"}><ImageSearch/></Button>&nbsp; */}
-                        <Button as={Link} style={{backgroundColor: '#3880ff'}}  onClick={() => {this.setState({currentViewContent: row["content"], currentViewTitle: row["subject"]}); this.handleViewShow();}}><OpenInNew/></Button>&nbsp;
+                        <Button as={Link} style={{backgroundColor: '#3880ff'}}  onClick={() => {this.setState({currentViewContent: row["content"], currentViewTitle: row["subject"]}); this.handleViewShow();}}><OpenInNew/></Button>&nbsp;&nbsp;&nbsp;
+                        <Button as={Link} style={{backgroundColor: '#dc3545', borderColor: '#dc3545'}}  onClick={() => {this.delete(row['id'])}}><DeleteOutline/></Button>&nbsp;
                         {/* <Button as={Link} variant="outline-danger" to="#" onClick={()=>this.delete(row['id'])}><DeleteOutline/></Button> */}
 
                     </>
@@ -46,6 +47,7 @@ class InformationalList extends React.Component {
         responseTypes: [1,1,1],
         callTreeTitle: "",
         editorState: EditorState.createEmpty(),
+        editorViewState: EditorState.createEmpty(),
         openViewModal: false,
         handleViewShow: this.handleViewShow.bind(this),
         currentViewContent: "",
@@ -56,7 +58,13 @@ class InformationalList extends React.Component {
     
     onEditorStateChange = (editorState) => {
         this.setState({
-        editorState,
+        editorState: editorState,
+        });
+    };
+
+    onEditorViewStateChange = (editorState) => {
+        this.setState({
+        editorViewState: editorState,
         });
     };
 
@@ -96,6 +104,32 @@ class InformationalList extends React.Component {
     this.setState({openViewModal: false});
    } 
 
+   delete(id){
+
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this when deleted?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            axios.delete(BASE_SERVER_URL + 'informational/' + id)
+            .then(res => {
+                this.getCallTreeList();   
+                }).catch(e=>{
+                    if(e.response.data){
+                        swal("Error!", e.response.data, "error");
+                    } else {
+                        swal("Error!", e.message, "error");
+                    }
+                })
+        }
+      });
+    
+   } 
+
 
    handleSubmit(){
     const params = {
@@ -125,6 +159,7 @@ class InformationalList extends React.Component {
    }
 
    handleViewShow(){
+
     this.setState({openViewModal: true});
    }
 
@@ -176,13 +211,19 @@ class InformationalList extends React.Component {
                 <Modal.Title>{this.state.currentViewTitle}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-            
+                {/* <div className="form-group">
+                    <input  id="title" type="text" required className="form-control" placeholder="Title" value={this.state.currentViewTitle} onChange={(e) => {this.handleTitle(e.target.value)}}/>
+                </div> */}
+                {/* <MyEditor editorState={this.state.editorViewState} onEditorStateChange={this.onEditorViewStateChange}/> */}
                 <div dangerouslySetInnerHTML={{ __html: this.state.currentViewContent }} />
 
                 </Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={this.handleViewClose.bind(this)}>
                     Close
+                </Button>
+                <Button variant="primary" onClick={this.handleSubmit.bind(this)}>
+                    Save
                 </Button>
                 </Modal.Footer>
             </Modal>

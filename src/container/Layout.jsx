@@ -11,7 +11,7 @@ import { BASE_SERVER_URL } from '../utils/BaseServerUrl';
 import axios from 'axios';
 import swal from 'sweetalert';
 import GenericRequest from '../utils/GenericRequest';
-import { Computer, ArrowForward, AccountBox, FolderOpen, GroupAdd, Send, Work, SyncAlt , Poll,Assignment, Settings, Apps, VpnKeyOutlined, Close, PeopleAlt, SignalCellularAlt, GroupWork, AssignmentInd, BusinessCenter, Apartment, School, EmojiPeople, LocationOn, SupervisorAccount, DateRange, Help, ContactPhone, FindInPage, Build, Schedule, PermContactCalendar, Functions, CastConnected, VerticalSplit, ExitToApp, LibraryAddCheck, PlaylistAddCheck, PlaylistAdd, WarningRounded, PeopleRounded, ExitToAppRounded, GitHub, CallMerge, Usb, InfoOutlined, Warning, Dashboard, AccountCircleRounded, AssignmentOutlined} from '@material-ui/icons';
+import { Computer, ArrowForward, AccountBox, FolderOpen, GroupAdd, Send, Work, SyncAlt , Poll,Assignment, Settings, Apps, VpnKeyOutlined, Close, PeopleAlt, SignalCellularAlt, GroupWork, AssignmentInd, BusinessCenter, Apartment, School, EmojiPeople, LocationOn, SupervisorAccount, DateRange, Help, ContactPhone, FindInPage, Build, Schedule, PermContactCalendar, Functions, CastConnected, VerticalSplit, ExitToApp, LibraryAddCheck, PlaylistAddCheck, PlaylistAdd, WarningRounded, PeopleRounded, ExitToAppRounded, GitHub, CallMerge, Usb, InfoOutlined, Warning, Dashboard, AccountCircleRounded, AssignmentOutlined, NaturePeople} from '@material-ui/icons';
 
 export default class Layout extends React.Component {
 
@@ -110,6 +110,7 @@ export default class Layout extends React.Component {
                 {/* <ListGroup.Item as={Link} style={linkStyle} to="../../../calltree"><Usb/>&nbsp;&nbsp;&nbsp;&nbsp;Call Tree List</ListGroup.Item> */}
                 <ListGroup.Item as={Link} style={linkStyle} to="../../../alerts"><InfoOutlined/>&nbsp;&nbsp;&nbsp;&nbsp;Alerts</ListGroup.Item>
                 <ListGroup.Item as={Link} style={linkStyle} to="../../../emergency"><Warning/>&nbsp;&nbsp;&nbsp;&nbsp;Emergency Reports</ListGroup.Item>
+                {/* <ListGroup.Item as={Link} style={linkStyle} to="../../../emergency"><NaturePeople/>&nbsp;&nbsp;&nbsp;&nbsp;Brgy Personnel</ListGroup.Item> */}
                 <ListGroup.Item as={Link} style={linkStyle} to="../../../assessments"><AssignmentOutlined/>&nbsp;&nbsp;&nbsp;&nbsp;Assessments</ListGroup.Item>
                 {/* <ListGroup.Item as={Link} style={linkStyle} to="../../../alerts"><WarningRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Alerts</ListGroup.Item> */}
                 <ListGroup.Item as={Link} style={linkStyle} to="../../../users" ><PeopleRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Community Users</ListGroup.Item> 
