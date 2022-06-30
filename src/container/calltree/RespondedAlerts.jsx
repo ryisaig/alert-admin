@@ -12,13 +12,12 @@ import MyEditor from './MyEditor';
 import { EditorState, convertToRaw } from 'draft-js';
 import { stateToHTML } from "draft-js-export-html"
 import MapDetails from './MapDetails';
-import RespondedAlerts from './RespondedAlerts';
 
-class AlertList extends React.Component {
+class RespondedAlerts extends React.Component {
    username =  sessionStorage.getItem("luna_user");
 
     state = {
-        subtitle: "Open reports",
+        subtitle: "Responded reports",
         isSearchable: false,
         isPrintable: false,
         isCreatable: false,
@@ -92,7 +91,7 @@ class AlertList extends React.Component {
 
         axios.get(BASE_SERVER_URL + 'alert/all').then(res => {
             const filtered = res.data.filter((item) => {
-                return item.status != "Responded";
+                return item.status === "Responded";
             })
             this.setState({data: filtered})
         })
@@ -128,9 +127,8 @@ class AlertList extends React.Component {
         
        return (
         <>
-            <h5 style={{ marginLeft: '30px' }}>Emergency Reports</h5>
             <ViewList values={this.state} sideContent={this.props.sideContent} handleKeywordChange={this.handleKeywordChange} search={this.search} component={this}/>           
-            <RespondedAlerts />
+
             <Modal show={this.state.openViewModal} onHide={this.handleViewClose.bind(this)}>
                 <Modal.Header closeButton>
                 <Modal.Title>Report Details</Modal.Title>
@@ -189,4 +187,4 @@ class AlertList extends React.Component {
 
 }
 
-export default AlertList;
+export default RespondedAlerts;

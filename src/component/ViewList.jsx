@@ -39,7 +39,8 @@ function ViewList(props) {
         <tbody>
           <tr>
             <td style={{border: "none", padding: '25px'}}>
-            <h5 style={{ marginBottom: '30px' }}>{props.values.title}</h5>
+            {props.values.title && <h5 style={{ marginBottom: '30px' }}>{props.values.title}</h5>}
+            {props.values.subtitle && <h6 style={{ marginBottom: '10px', marginLeft: "2px"}}>{props.values.subtitle}</h6>}
               <table>
                 <tbody>
                 <tr>
