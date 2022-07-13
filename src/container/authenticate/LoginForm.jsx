@@ -44,7 +44,7 @@ class Login extends React.Component {
                     sessionStorage.setItem("call_tree_brgy", userData[2]);
                     sessionStorage.setItem("call_tree_username", userData[3]);
 
-                    if(userData[2] !== "brgy"){
+                    if(userData[1] === "brgy"){
                         window.location.href = "./assessments";
 
                     } else {
