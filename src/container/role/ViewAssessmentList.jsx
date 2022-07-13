@@ -17,7 +17,7 @@ class ViewAssessmentList extends React.Component {
     state = {
         title: "Assessments",
         isSearchable: false,
-        isPrintable: true,
+        isPrintable: sessionStorage.getItem("call_tree_role") !== "brgy" ? true : false,
         isCreatable: true,
         createUrl: "/roles/create",
         columns: [

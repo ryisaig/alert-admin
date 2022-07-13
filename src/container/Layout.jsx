@@ -106,15 +106,15 @@ export default class Layout extends React.Component {
                    <p style={{color: '#424242', fontSize: '12px'}}> {sessionStorage.getItem("call_tree_name") ? sessionStorage.getItem("call_tree_name").toUpperCase() : ""}</p>
                 </div>
                 <div>
-                <ListGroup.Item as={Link} style={linkStyle} to="../../../dashboard"><Dashboard/>&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</ListGroup.Item>
+                {sessionStorage.getItem("call_tree_role") !== 'brgy' && <ListGroup.Item as={Link} style={linkStyle} to="../../../dashboard"><Dashboard/>&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</ListGroup.Item>}
                 {/* <ListGroup.Item as={Link} style={linkStyle} to="../../../calltree"><Usb/>&nbsp;&nbsp;&nbsp;&nbsp;Call Tree List</ListGroup.Item> */}
-                <ListGroup.Item as={Link} style={linkStyle} to="../../../alerts"><InfoOutlined/>&nbsp;&nbsp;&nbsp;&nbsp;Alerts</ListGroup.Item>
-                <ListGroup.Item as={Link} style={linkStyle} to="../../../emergency"><Warning/>&nbsp;&nbsp;&nbsp;&nbsp;Emergency Reports</ListGroup.Item>
+                {sessionStorage.getItem("call_tree_role") !== 'brgy' && <ListGroup.Item as={Link} style={linkStyle} to="../../../alerts"><InfoOutlined/>&nbsp;&nbsp;&nbsp;&nbsp;Alerts</ListGroup.Item>}
+                {sessionStorage.getItem("call_tree_role") !== 'brgy' && <ListGroup.Item as={Link} style={linkStyle} to="../../../emergency"><Warning/>&nbsp;&nbsp;&nbsp;&nbsp;Emergency Reports</ListGroup.Item>}
                 {/* <ListGroup.Item as={Link} style={linkStyle} to="../../../emergency"><NaturePeople/>&nbsp;&nbsp;&nbsp;&nbsp;Brgy Personnel</ListGroup.Item> */}
                 <ListGroup.Item as={Link} style={linkStyle} to="../../../assessments"><AssignmentOutlined/>&nbsp;&nbsp;&nbsp;&nbsp;Assessments</ListGroup.Item>
                 {/* <ListGroup.Item as={Link} style={linkStyle} to="../../../alerts"><WarningRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Alerts</ListGroup.Item> */}
-                <ListGroup.Item as={Link} style={linkStyle} to="../../../users" ><PeopleRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Community Users</ListGroup.Item> 
-                {/* <ListGroup.Item as={Link} style={linkStyle} to="../../../admin-users" ><AccountCircleRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Admin Users</ListGroup.Item>                                                */}
+                {sessionStorage.getItem("call_tree_role") !== 'brgy' && <ListGroup.Item as={Link} style={linkStyle} to="../../../users" ><PeopleRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Community Users</ListGroup.Item>}
+                {<ListGroup.Item as={Link} style={linkStyle} to="../../../admin-users" ><AccountCircleRounded/>&nbsp;&nbsp;&nbsp;&nbsp;{sessionStorage.getItem("call_tree_role") !== 'brgy' ? "Admin Users" : "Account"}</ListGroup.Item>  }                                            
                 <ListGroup.Item as={Link} style={linkStyle} to="#" onClick={this.signout}><ExitToAppRounded/>&nbsp;&nbsp;&nbsp;&nbsp;Sign-out</ListGroup.Item>
                 </div>
             </div>

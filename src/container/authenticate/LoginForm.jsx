@@ -38,8 +38,19 @@ class Login extends React.Component {
             if(res.data){
                 swal("Success!", "You have been successfully logged-in", "success").then(()=>{
                     sessionStorage.setItem("call_tree_session", Math.random());
-                    sessionStorage.setItem("call_tree_name", res.data);
-                    window.location.href = "./dashboard";
+                    const userData = res.data.split(",");
+                    sessionStorage.setItem("call_tree_name", userData[0]);
+                    sessionStorage.setItem("call_tree_role", userData[1]);
+                    sessionStorage.setItem("call_tree_brgy", userData[2]);
+                    sessionStorage.setItem("call_tree_username", userData[3]);
+
+                    if(userData[2] !== "brgy"){
+                        window.location.href = "./assessments";
+
+                    } else {
+                        window.location.href = "./dashboard";
+
+                    }
                 });
             } else {
                 swal("Error!", "Invalid Login", "error");
