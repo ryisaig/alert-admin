@@ -259,7 +259,7 @@ class AdminUsers extends React.Component {
                 <div className="form-group">
                     <label>Role</label>
                     <select  id="role" type="text" required className="form-control" placeholder="Role" onChange={(e) => {this.setState({user: {...this.state.user, role: e.target.value}})}}>
-                        <option value="admin">Admin</option>
+                         <option value="admin">Admin</option>
                         <option value="brgy">Barangay Personell</option>
                     </select>
                 </div>
@@ -335,8 +335,8 @@ class AdminUsers extends React.Component {
                 </div>
                 <div className="form-group">
                     <label>Role</label>
-                    <select  id="role" type="text" required className="form-control" placeholder="Role" value={this.state.currentUser.role}  onChange={(e) => {this.setState({currentUser: {...this.state.currentUser, role: e.target.value}})}}>
-                        <option value="admin">Admin</option>
+                    <select  id="role" type="text" disabled={sessionStorage.getItem('call_tree_role') === 'brgy'} required className="form-control" placeholder="Role" value={this.state.currentUser.role}  onChange={(e) => {this.setState({currentUser: {...this.state.currentUser, role: e.target.value}})}}>
+                    <option value="admin">Admin</option>
                         <option value="brgy">Barangay Personell</option>
                     </select>
                 </div>
