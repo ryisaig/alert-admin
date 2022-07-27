@@ -19,7 +19,7 @@ import ViewUserList from './container/user/ViewUserList';
 import InformationalList from './container/calltree/InformationalList';
 import AlertList from './container/calltree/AlertList';
 import Dashboard from './container/calltree/Dashboard';
-import ViewAssessmentList from './container/role/ViewAssessmentList';
+import Assessments from './container/calltree/Assessments';
 import AdminUsers from './container/user/AdminUsers';
 
 axios.interceptors.request.use((config) => {
@@ -79,8 +79,12 @@ function App() {
                 }/>
                 
                 <Route path="/assessments" render={(props) => 
-                  <ViewAssessmentList {...props}>
-                    </ViewAssessmentList>
+                  <Assessments {...props}>
+                    </Assessments>
+                }/>
+                 <Route path="/brgy-assessment" render={(props) => 
+                  <Assessments {...props}>
+                    </Assessments>
                 }/>
                 
                 <Route path="/" render={(props) => 
